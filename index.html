@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-c531a81f-ba49-4eb4-94fe-7d90e4f86f83" data-elfsight-app-lazy></div>
+    <title>Glow Up</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="{{ url_for('index') }}" id="navbar__logo"> Glow Up</a>
+            <div class="navbar__toggle" id="glow-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{{ url_for('index') }}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('routine') }}" class="navbar__links">Routines</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('products') }}" class="navbar__links">Products</a>
+                </li>
+                <li class="navbar__btn">
+                  <a href="{{ url_for('login') }}" class="navbar__button">Log In</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="{{ url_for('signup') }}" class="navbar__button">Sign Up</a>
+                </li>
+                <li class="navbar__btn" id="logoutLi" style="display: none;">
+                     <a href="#" id="logoutBtn" class="navbar__button">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Hero Section-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Glow Up</h1>
+                <h2>Because your skin deserves love</h2>
+                <p>رحلتك مع العناية بالبشرة تبدأ من هنا</p>
+                <button class="main__btn"><a href="{{ url_for('skintest') }}">اكتشفي نوع بشرتك</a></button>
+            </div>
+            <div class="main__img--container">
+                <img src="{{ url_for('static', filename='images/Hero image.jpg') }}" alt="Glowy Face" id="main__img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Glow Up Section -->
+    <section id="why-glow-up" class="section">
+    <div class="container">
+        <h2>لماذا Glow Up هو الخيار الأنسب لك؟</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>زيادة الثقة بالنفس</h3>
+                <p>اشعري بثقة أكبر في نفسك كل يوم مع نصائحنا وإرشاداتنا.</p>
+            </div>
+            <div class="card">
+                <h3>بشرة صحية</h3>
+                <p>تعلمي كيفية العناية ببشرتك بطريقة طبيعية وفعّالة.</p>
+            </div>
+            <div class="card">
+                <h3>النمو الشخصي</h3>
+                <p>Glow Up يساعدك على تطوير شخصيتك وأسلوبك.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Services Section -->
+     <div class="services">
+        <h1>خدماتنا</h1>
+        <div class="services__container">
+            <div class="services__cards">
+                <h2>اكتشف نوع بشرتك</h2>
+                <p> بخطوات بسيطة وأسئلة سريعة، ساعدينا لنحدد نوع بشرتك لنقترح عليك أفضل روتين عناية يناسبك</p>
+                <button class="services__btn"> <a href="{{ url_for('skintest') }}"> ابدئي الاختبار</a></button>
+            </div>
+            <div class="services__cards">
+                <h2>روتين العناية بالبشرة</h2>
+                <p>لأن كل بشرة مختلفة، نوفر لك روتين يومي سهل وفعال يعزز إشراقة بشرتك الطبيعية</p>
+                <button class="services__btn"><a href="{{ url_for('routine') }}"> اكتشفي الروتين</a></button>
+             </div> 
+                <div class="services__cards">
+                <h2>منتجات مختارة بعناية</h2>
+                <p>تصفحي مجموعة من المنتجات المناسبة لكل نوع بشرة، لتختاري بثقة وراحة</p>
+                <button class="services__btn"><a href="{{ url_for('products') }}"> عرض المنتجات</a></button>
+             </div> 
+        </div>
+     </div>
+
+       <!-- About Us Section -->
+<section id="about-us" class="section">
+    <div class="container about-container">
+        <div class="about-text">
+            <h2>من نحن</h2>
+            <p>
+                نحن في <strong>Glow Up</strong> نؤمن أن الجمال يبدأ من العناية الصحيحة بالبشرة 
+                ومن الثقة بالنفس. هدفنا هو أن نكون دليلكِ الشخصي في رحلة الاهتمام بجمالك الطبيعي، 
+                من خلال تقديم نصائح علمية، روتينات يومية عملية، ومنتجات مختارة بعناية تناسب كل نوع بشرة.
+            </p>
+            <p>
+                فريقنا يجمع بين الخبرة والشغف، لنمنحكِ تجربة متكاملة تساعدكِ على اكتشاف 
+                ما يناسبكِ بالضبط، سواء كنتِ مبتدئة في عالم العناية بالبشرة أو تبحثين عن 
+                حلول متقدمة لمشاكل محددة.
+            </p>
+            <p>
+                في Glow Up، رسالتنا هي أن نلهمكِ لتشعري بالثقة، وتتبني أسلوب حياة صحي 
+                يعزز إشراقتكِ الداخلية والخارجية.
+            </p>
+        </div>
+    </div>
+</section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

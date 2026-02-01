@@ -1,0 +1,376 @@
+/*-- ROOT VARIABLES  --*/
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --card-padding: 1.8rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0; padding: 0; outline: 0; appearance: none;
+    border: 0; text-decoration: none; list-style: none; box-sizing: border-box;
+}
+html { 
+    font-size: 14px;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+/* --- Layout --- */
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto;
+}
+
+/* --- Sidebar --- */
+aside {
+    height: 100vh;
+}
+aside .top {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+aside .logo h2 {
+    font-size: 1.4rem;
+}
+aside .sidebar {
+    background: var(--color-white);
+    display: flex; 
+    flex-direction: column;
+    height: 86vh;
+    position: relative; 
+    top: 3rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+aside .sidebar a {
+    display: flex; 
+    color: var(--color-info-dark);
+    margin-left: 2rem; 
+    gap: 1rem; 
+    align-items: center;
+    position: relative; 
+    height: 3.7rem; 
+    transition: all 300ms ease;
+}
+aside .sidebar a span { 
+    font-size: 1.6rem; 
+    transition: all 300ms ease; 
+}
+aside .sidebar a.active { 
+    background: var(--color-light); 
+    color: var(--color-primary); 
+    margin-left: 0; 
+}
+aside .sidebar a.active:before { 
+    content: ""; 
+    width: 6px; 
+    height: 100%; 
+    background: var(--color-primary); 
+}
+aside .sidebar a.active span { 
+    margin-left: calc(1rem - 3px); 
+}
+aside .sidebar a:hover { 
+    color: var(--color-primary); 
+}
+aside .sidebar a:hover span { 
+    margin-left: 1rem; 
+}
+aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 2rem; 
+    width: 100%;
+}
+/* --- Main Content --- */
+main { 
+    margin-top: 1.4rem; 
+}
+.main-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 2rem; 
+}
+.profile { 
+    display: flex; 
+    gap: 2rem; 
+    text-align: right; 
+}
+.profile-photo { 
+    width: 2.8rem; 
+    height: 2.8rem; 
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+/* --- Insight Cards --- */
+.insights { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.6rem; 
+}
+.insights > div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.insights > div:hover { 
+    box-shadow: none; 
+}
+.insights > div span {
+    background: var(--color-primary);
+    padding: 0.5rem; border-radius: 50%;
+    color: var(--color-white); font-size: 2rem;
+}
+.insights > div.expenses span { 
+    background: var(--color-danger); 
+}
+.insights > div .middle { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+.insights h3 { 
+    margin: 1rem 0 0.6rem; 
+    font-size: 1rem; 
+}
+.insights .progress { 
+    position: relative; 
+    width: 92px; 
+    height: 92px; 
+    border-radius: 50%; 
+}
+.insights svg { 
+    width: 7rem; 
+    height: 7rem; 
+}
+.insights svg circle {
+    fill: none; 
+    stroke: var(--color-primary); 
+    stroke-width: 14;
+    stroke-linecap: round; 
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110; stroke-dashoffset: 92;
+}
+.insights .sales svg circle { 
+    stroke-dashoffset: -30; 
+    stroke-dasharray: 200; 
+} 
+
+/* --- Tables (Products & Users) --- */
+.recent-orders {
+    margin-top: 2rem;
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+}
+.recent-orders table { 
+    width: 100%; 
+    text-align: center; 
+}
+.recent-orders table th { 
+    padding: 10px; 
+    color: var(--color-dark); 
+}
+.recent-orders table td { 
+    height: 3.8rem; 
+    border-bottom: 1px solid var(--color-light); 
+    color: var(--color-dark-variant); 
+}
+.recent-orders table tr:last-child td { 
+    border: none; 
+}
+.recent-orders a { 
+    color: var(--color-primary); 
+    cursor: pointer; 
+}
+.product-thumbnail { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 8px; 
+    object-fit: cover; 
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background: var(--color-primary); 
+    color: #fff; 
+    padding: 0.6rem 2rem;
+    border-radius: var(--border-radius-2); 
+    cursor: pointer;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 0.5rem;
+    font-size: 1rem; 
+    margin-bottom: 1rem;
+}
+
+/* --- Modal --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 10; 
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: var(--color-white);
+    margin: 2rem auto; 
+    padding: 2rem;
+    border-radius: var(--card-border-radius);
+    width: 50%; 
+    position: relative;
+    box-shadow: var(--box-shadow);
+    
+    max-height: 90vh; 
+    overflow-y: auto;
+}
+.close-modal {
+    position: absolute; 
+    right: 20px; 
+    top: 15px; 
+    font-size: 28px; 
+    cursor: pointer;
+}
+.form-group { 
+    margin-bottom: 1rem; 
+}
+.form-group label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    font-weight: 500; 
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; 
+    padding: 0.8rem; 
+    border-radius: var(--border-radius-1);
+    background: var(--color-light); 
+    border: 1px solid transparent;
+}
+
+/* --- Login Page Styles --- */
+.login-body {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    background: linear-gradient(135deg, #7380ec 0%, #ff7782 100%);
+}
+.login-container {
+    background: var(--color-white); 
+    padding: 3rem;
+    border-radius: var(--card-border-radius); 
+    box-shadow: var(--box-shadow);
+    width: 400px; 
+    text-align: center;
+}
+.login-header h2 { 
+    font-size: 2rem; 
+    margin-bottom: 0.5rem; 
+}
+.input-group { 
+    margin-bottom: 1.5rem; 
+    text-align: left; 
+}
+.input-group input { 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: var(--border-radius-1); 
+}
+
+/* --- Utility Colors --- */
+.text-muted { 
+    color: var(--color-info-dark); 
+}
+.danger { 
+    color: var(--color-danger); 
+}
+.success { 
+    color: var(--color-success); 
+}
+.warning { 
+    color: var(--color-warning); 
+}
+
+/* --- Chart  --- */
+.chart-container {
+    background: var(--color-white); 
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius); 
+    margin-top: 2rem;
+    box-shadow: var(--box-shadow);
+}
+.mock-chart {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-end;
+    height: 150px; 
+    margin-top: 1rem; 
+    border-bottom: 2px solid var(--color-info-light);
+}
+.bar { width: 15%; 
+    border-radius: 5px 5px 0 0; 
+    position: relative; 
+}
+.chart-labels { 
+    display: flex; 
+    justify-content: space-around; 
+    margin-top: 0.5rem; 
+    color: var(--color-info-dark);
+}
+.bar {
+    position: relative; 
+    border-radius: 5px 5px 0 0; 
+}
+
+.bar::before {
+    content: attr(data-value); /* يأخذ القيمة من HTML */
+    position: absolute;
+    top: -25px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--color-dark); 
+}
+
+.mock-chart {
+    margin-top: 2rem; 
+    align-items: flex-end; 
+}

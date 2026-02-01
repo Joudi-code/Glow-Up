@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up - Admin Dashboard</title>
+    <!-- تأكدي أن اسم ملف الـ CSS هنا يطابق الموجود عندك (admin.css أو style.css) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Glow<span class="danger">UP</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="active" onclick="showSection('dashboard')">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" onclick="showSection('users')">
+                    <span class="material-symbols-outlined">person</span>
+                    <h3>Manage Users</h3>
+                </a>
+                <a href="#" onclick="showSection('products')">
+                    <span class="material-symbols-outlined">storefront</span>
+                    <h3>Manage Products</h3>
+                </a>
+                <!-- زر الخروج المصحح -->
+                <a href="#" onclick="logoutAdmin()">
+                    <span class="material-symbols-outlined">logout</span>
+                <h3>Logout</h3>
+                </a>
+          
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Header -->
+            <div class="main-header">
+                <h1 id="page-title">Dashboard Overview</h1>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Admin</b></p>
+                        <small class="text-muted">Super Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <!-- صورة افتراضية -->
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=ff7782&color=fff" alt="Profile">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 SECTION 1: DASHBOARD OVERVIEW 
+                 ============================== -->
+            <div id="dashboard-section">
+                <div class="insights">
+                    <!-- Users Card -->
+                    <div class="sales">
+                        <span class="material-symbols-outlined">group</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Users</h3>
+                                <h1>25,024</h1>
+                            </div>
+                            <div class="progress">
+                                <svg><circle cx="38" cy="38" r="36"></circle></svg>
+                                <div class="number"><p>81%</p></div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Updated Just Now</small>
+                    </div>
+                    <!-- Products Card -->
+                    <div class="expenses">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Products</h3>
+                                <h1>14,200</h1>
+                            </div>
+                            <div class="progress">
+                                <svg><circle cx="38" cy="38" r="36"></circle></svg>
+                                <div class="number"><p>52%</p></div>
+                            </div>
+                        </div>
+                        <small class="text-muted">In Stock</small>
+                    </div>
+                </div>
+
+                <!-- Chart Area -->
+                <div class="chart-container">
+                    <h2>Skin Type Analysis</h2>
+                    <div class="mock-chart">
+                        <!-- تم استخدام data-value هنا لتعمل مع الـ CSS -->
+                        <div class="bar" style="height: 40%; background: var(--color-primary);" data-value="40%"></div>
+                        <div class="bar" style="height: 30%; background: var(--color-danger);" data-value="30%"></div>
+                        <div class="bar" style="height: 20%; background: var(--color-success);" data-value="20%"></div>
+                        <div class="bar" style="height: 10%; background: var(--color-warning);" data-value="10%"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>Oily</span><span>Dry</span><span>Combo</span><span>Normal</span>
+                    </div>
+                </div>
+            </div> <!-- 🔴 تم إغلاق قسم الداشبورد هنا بشكل صحيح 🔴 -->
+
+
+            <!-- ==============================
+                 SECTION 2: MANAGE PRODUCTS 
+                 ============================== -->
+            <div id="products-section" style="display: none;">
+                <button class="btn-primary" id="add-product-btn">
+                    <span class="material-symbols-outlined">add</span> Add New Product
+                </button>
+                
+                <div class="recent-orders">
+                    <h2>All Products</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- سيتم تعبئة البيانات بواسطة JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 SECTION 3: MANAGE USERS 
+                 ============================== -->
+            <!-- ابحثي عن هذا الجزء في ملف admin.html وتأكدي من الـ ID -->
+<div id="users-section" style="display: none;">
+    <div class="recent-orders">
+        <h2>Registered Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Skin Type</th>
+                    <th>Join Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <!-- تأكدي أن الـ ID هنا هو "users-table-body" -->
+            <tbody id="users-table-body">
+                <!-- الجافا سكريبت سيضع البيانات هنا -->
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+        </main>
+    </div>
+
+    <!-- MODAL: ADD/EDIT PRODUCT -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Add New Product</h2>
+            <form id="product-form">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" required>
+                        <option value="Cleanser">Cleanser</option>
+                        <option value="Moisturizer">Moisturizer</option>
+                        <option value="Serum">Serum</option>
+                        <option value="Sunscreen">Sunscreen</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label>Recommended For</label>
+                    <select name="recommended">
+                        <option value="All">All Skin Types</option>
+                        <option value="Oily">Oily</option>
+                        <option value="Dry">Dry</option>
+                        <option value="Sensitive">Sensitive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ingredients</label>
+                    <textarea name="ingredients" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <input type="file" name="image">
+                </div>
+                <button type="submit" class="btn-primary">Save Product</button>
+            </form>
+        </div>
+    </div>
+<script>
+    // دالة تسجيل الخروج
+    function logoutAdmin() {
+        // 1. مسح التوكن والبيانات
+        localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userSkinType');
+        
+        // 2. التوجيه لصفحة الدخول (وليس login.html)
+        window.location.href = '/login';
+    }
+</script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

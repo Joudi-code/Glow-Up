@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up | اختبار نوع البشرة</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-c531a81f-ba49-4eb4-94fe-7d90e4f86f83" data-elfsight-app-lazy></div>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="{{ url_for('index') }}" id="navbar__logo"> Glow Up</a>
+            <div class="navbar__toggle" id="glow-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{{ url_for('index') }}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('routine') }}" class="navbar__links">Routines</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('products') }}" class="navbar__links">Products</a>
+                </li>
+                <li class="navbar__btn">
+                  <a href="{{ url_for('login') }}" class="navbar__button">Log In</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="{{ url_for('signup') }}" class="navbar__button">Sign Up</a>
+                </li>
+                <li class="navbar__btn" id="logoutLi" style="display: none;">
+                    <a href="#" id="logoutBtn" class="navbar__button">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <section class="skin-test">
+        <h2>اختبار نوع بشرتك</h2>
+        <p class="subtitle">أجيبي على الأسئلة التالية لاكتشاف نوع بشرتك واقتراح الروتين المناسب لكِ.</p>
+
+        <form id="skinForm">
+            <div class="question">
+                <p>1. كيف تشعرين ببشرتك بعد غسلها بدون مرطب؟</p>
+                <label><input type="radio" name="q1" value="dry"> مشدودة وجافة</label>
+                <label><input type="radio" name="q1" value="oily"> لامعة</label>
+                <label><input type="radio" name="q1" value="combination"> جافة في الخدود ودهنية في الأنف</label>
+                <label><input type="radio" name="q1" value="sensitive"> حارقة أو متهيجة</label>
+            </div>
+
+            <div class="question">
+                <p>2. كيف يبدو مظهر المسام لديك؟</p>
+                <label><input type="radio" name="q2" value="dry"> صغيرة وغير واضحة</label>
+                <label><input type="radio" name="q2" value="oily"> واسعة وواضحة</label>
+                <label><input type="radio" name="q2" value="combination"> واسعة في منطقة T (الجبين والأنف والذقن في الوجه)  فقط</label>
+                <label><input type="radio" name="q2" value="sensitive"> طبيعية لكن البشرة تحمر بسهولة</label>
+            </div>
+
+            <div class="question">
+                <p>3. كم مرة يظهر اللمعان على بشرتك خلال اليوم؟</p>
+                <label><input type="radio" name="q3" value="dry"> نادرًا</label>
+                <label><input type="radio" name="q3" value="oily"> دائمًا</label>
+                <label><input type="radio" name="q3" value="combination"> في الجبهة والأنف فقط</label>
+                <label><input type="radio" name="q3" value="sensitive"> لا يوجد لكن يظهر احمرار</label>
+            </div>
+
+            <div class="question">
+                <p>4. كيف تتفاعل بشرتك مع منتجات جديدة؟</p>
+                <label><input type="radio" name="q4" value="dry"> تمتصها بسرعة</label>
+                <label><input type="radio" name="q4" value="oily"> قد تسبب حبوب</label>
+                <label><input type="radio" name="q4" value="combination"> تختلف حسب المنطقة</label>
+                <label><input type="radio" name="q4" value="sensitive"> تتهيج بسهولة</label>
+            </div>
+            
+            <button type="button" class="analyze-btn" onclick="getSkinType()">تحليل نوع البشرة</button>
+        </form>
+
+        <!-- منطقة النتيجة وزر الذهاب للروتين -->
+        <div id="resultContainer" style="display: none; margin-top: 30px; text-align: center;">
+            <div id="result" class="result"></div>
+            <p id="resultDesc" ></p>
+            
+            <a href="{{ url_for('routine') }}" class="go-routine-btn">عرض الروتين المناسب لي <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

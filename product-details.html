@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up | تفاصيل المنتج</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-c531a81f-ba49-4eb4-94fe-7d90e4f86f83" data-elfsight-app-lazy></div>
+</head>
+<body>
+<!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="{{ url_for('index') }}" id="navbar__logo"> Glow Up</a>
+            <div class="navbar__toggle" id="glow-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{{ url_for('index') }}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('routine') }}" class="navbar__links">Routines</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('products') }}" class="navbar__links">Products</a>
+                </li>
+                <li class="navbar__btn">
+                  <a href="{{ url_for('login') }}" class="navbar__button">Log In</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="{{ url_for('signup') }}" class="navbar__button">Sign Up</a>
+                </li>
+                <li class="navbar__btn" id="logoutLi" style="display: none;">
+                    <a href="#" id="logoutBtn" class="navbar__button">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Product Details Container -->
+    <div class="product-details-container" id="detailsContainer">
+        <p style="text-align: center; padding: 50px;">جاري تحميل المنتج...</p>
+    </div>
+
+    <!-- Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. جلب الـ ID من الرابط
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const container = document.getElementById('detailsContainer');
+
+            if (!productId) {
+                container.innerHTML = "<h2 style='text-align:center;'>رقم المنتج غير موجود</h2>";
+                return;
+            }
+
+            try {
+                // 2. طلب البيانات من الباك إند
+                const response = await fetch(`http://127.0.0.1:5000/api/products/${productId}`);
+                
+                if (!response.ok) throw new Error('Product not found');
+                
+                const product = await response.json();
+
+                // 3. تجهيز نص المكونات (إذا كان مصفوفة نحوله لنص)
+                let ingredientsHTML = '';
+                if (Array.isArray(product.ingredients)) {
+                    ingredientsHTML = product.ingredients.map(ing => 
+                        `<li><strong>${ing.name}:</strong> ${ing.benefit || ''}</li>`
+                    ).join('');
+                } else {
+                    ingredientsHTML = product.ingredients; 
+                }
+
+                // 4. عرض المنتج
+                container.innerHTML = `
+                    <div class="details-wrapper">
+                        <div class="details-image">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='./Pictures/placeholder.jpg'">
+                        </div>
+                        <div class="details-info">
+                            <h1>${product.name}</h1>
+                            <p class="details-price">$${product.price}</p>
+                            <div class="category-badge">${product.category}</div>
+                            <p class="details-desc">${product.description}</p>
+                            
+                            <div class="ingredients-box">
+                                <h4>🌿 المكونات الفعالة:</h4>
+                                <ul>${ingredientsHTML}</ul>
+                            </div>
+
+                            <a href="{{ url_for('products') }}" class="back-btn">
+                                <i class="fa-solid fa-arrow-right"></i> عودة للمنتجات
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = "<h2 style='text-align:center;'>حدث خطأ أو المنتج غير موجود</h2>";
+            }
+        });
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

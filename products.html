@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up | Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-c531a81f-ba49-4eb4-94fe-7d90e4f86f83" data-elfsight-app-lazy></div>
+</head>
+<body>
+     <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="{{ url_for('index') }}" id="navbar__logo"> Glow Up</a>
+            <div class="navbar__toggle" id="glow-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{{ url_for('index') }}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('routine') }}" class="navbar__links">Routines</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{ url_for('products') }}" class="navbar__links">Products</a>
+                </li>
+                <li class="navbar__btn">
+                  <a href="{{ url_for('login') }}" class="navbar__button">Log In</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="{{ url_for('signup') }}" class="navbar__button">Sign Up</a>
+                </li>
+                <li class="navbar__btn" id="logoutLi" style="display: none;">
+                    <a href="#" id="logoutBtn" class="navbar__button">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="header__container">
+        <div class="empty__space"></div> <h2 class="section__title">Skin Care Products</h2>
+        <div class="search__container">
+            <div class="search__box">
+                <input type="text" id="searchBox" placeholder="Search for products...">
+                <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </div>
+        <!-- في ملف products.html -->
+        <div class="products" id="products-container">
+            <p id="loading-msg" style="text-align:center; grid-column: 1/-1;">جاري تحميل المنتجات...</p>
+        </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
